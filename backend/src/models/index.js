@@ -3,7 +3,9 @@ require("dotenv").config();
 
 const tablePrefix = process.env.TABLE_PREFIX || "";
 
+// Modelos
 const Cita = require("./citas")(sequelize, tablePrefix);
+const Usuario = require("./Usuario")(sequelize, tablePrefix);
 
 async function syncDb() {
   await sequelize.authenticate();
@@ -12,6 +14,9 @@ async function syncDb() {
 
 module.exports = { 
   sequelize, 
-  models: { Cita }, 
+  models: { 
+    Cita,
+    Usuario
+  }, 
   syncDb 
 };

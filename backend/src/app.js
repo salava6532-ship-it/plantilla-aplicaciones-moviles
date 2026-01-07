@@ -5,7 +5,7 @@ require("dotenv").config();
 module.exports = (models) => {
   const app = express();
 
-  // ✅ CORS compatible con Cordova y navegadores
+  // CORS compatible con Cordova y navegadores
   const corsOptions = {
     origin: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -31,7 +31,10 @@ module.exports = (models) => {
   // API v1
   const v1 = express.Router();
 
-  // ✅ Rutas Agenda de Citas
+  // Auth (login / registro)
+  v1.use("/auth", require("./routes/v1/auth.routes")(models));
+
+  // Agenda de Citas
   v1.use("/citas", require("./routes/v1/citas.routes")(models));
 
   app.use("/api/v1", v1);
@@ -41,3 +44,4 @@ module.exports = (models) => {
 
   return app;
 };
+

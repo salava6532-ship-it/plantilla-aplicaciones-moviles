@@ -16,17 +16,20 @@ module.exports = (sequelize, tablePrefix) => {
       allowNull: false
     },
     hora: {
-      type: DataTypes.TIME,
+      type: DataTypes.STRING(10),
       allowNull: false
     },
     descripcion: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.TEXT,
       allowNull: true
     },
     estado: {
-      type: DataTypes.STRING(30),
-      allowNull: false,
+      type: DataTypes.STRING(20),
       defaultValue: "pendiente"
+    },
+    usuarioId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     tableName: `${tablePrefix}citas`
